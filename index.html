@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tasks</title>
+</head>
+<body>
+
+<h1>JavaScript Task Solutions</h1>
+
+<h2>1. Sum of Two Integers</h2>
+<input type="number" id="int1" placeholder="Integer 1">
+<input type="number" id="int2" placeholder="Integer 2">
+<button onclick="displaySum()">Calculate Sum</button>
+<div id="sumResult"></div>
+
+<h2>2. Guessing Game</h2>
+<input type="number" id="guess1" placeholder="Guess a number between 1-10">
+<button onclick="guessNumber()">Play Guessing Game</button>
+<div id="guessResult"></div>
+
+<h2>3. Check Range</h2>
+<input type="number" id="range1" placeholder="Element 1">
+<input type="number" id="range2" placeholder="Element 2">
+<button onclick="checkRangeValues()">Check Range</button>
+<div id="rangeResult"></div>
+
+<h2>4. Closest Value to 100</h2>
+<input type="number" id="value1" placeholder="Element 1">
+<input type="number" id="value2" placeholder="Element 2">
+<button onclick="findClosest()">Find Closest</button>
+<div id="closestResult"></div>
+
+<h2>5. Add Items to Array</h2>
+<input type="number" id="item" placeholder="Add Item">
+<button onclick="addItem()">Add</button>
+<button onclick="displayItems()">Display Items</button>
+
+<div id="arrayResult"></div>
+
+<script>
+    let items = []; 
+
+    function displaySum() {
+        const a = parseInt(document.getElementById('int1').value);
+        const b = parseInt(document.getElementById('int2').value);
+        const result = (a === b) ? 3 * (a + b) : (a + b);
+        document.getElementById('sumResult').innerHTML = "Sum = " + result;
+    }
+
+    function guessNumber() {
+        const randomNum = Math.floor(Math.random() * 10) + 1;
+        const userGuess = parseInt(document.getElementById('guess1').value);
+        const message = (userGuess === randomNum) ? "Good Work" : "Not matched";
+        document.getElementById('guessResult').innerHTML = `Your guess: ${userGuess}. Random number: ${randomNum}. Result: ${message}`;
+    }
+
+    function checkRangeValues() {
+        const value1 = parseInt(document.getElementById('range1').value);
+        const value2 = parseInt(document.getElementById('range2').value);
+        const inRange = (value1 >= 50 && value1 <= 99) || (value2 >= 50 && value2 <= 99);
+        document.getElementById('rangeResult').innerHTML = "Values in range 50-99: " + inRange;
+    }
+
+    function findClosest() {
+        const num1 = parseInt(document.getElementById('value1').value);
+        const num2 = parseInt(document.getElementById('value2').value);
+        const diff1 = Math.abs(100 - num1);
+        const diff2 = Math.abs(100 - num2);
+        const closest = (diff1 < diff2) ? num1 : num2;
+        document.getElementById('closestResult').innerHTML = "Closest value to 100: " + closest;
+    }
+
+    function addItem() {
+        const itemValue = parseInt(document.getElementById('item').value);
+        if (!isNaN(itemValue)) {
+            items.push(itemValue);
+            document.getElementById('item').value = ''; 
+        }
+    }
+
+    function displayItems() {
+        let result = '';
+        for (let i = 0; i < items.length; i++) {
+            result += `Element ${i + 1} = ${items[i]}<br>`;
+        }
+        document.getElementById('arrayResult').innerHTML = result;
+    }
+
+  
+</script>
+
+</body>
+</html>
